@@ -1,9 +1,14 @@
-Identificação da turma (ex: EIC1)
+Identificacao da turma: METI_PL
 
-Identificação do grupo (ex: Grupo 2)
+Identificação do grupo: Grupo 103
 
-Identificação do número, nome e papel de cada membro do grupo (ex: 12345, José Silva, Scrum Master)
+Identificao dos elementos do grupo: 
+	
+	Rui Passinhas, n� 68675
+	Beatriz Arriaga, n� 60250
+	Susana Maria, n� 60185
+	Ruben Silva, n� 693
 
-Identificação da variante do projeto desenvolvida (ex: AntiSpamConfigurationForProfessionalMailbox)
+Identificacao do projeto desenvolvida: AntiSpamConfigurationForProfessionalMailbox
 
-Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida (ex: http://...)
+Link para o video no youtube com a demonstracaoo da aplicacao final desenvolvida: 
