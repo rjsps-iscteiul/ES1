@@ -6,8 +6,8 @@ Identificao dos elementos do grupo:
 	
 	Rui Passinhas, nº 68675
 	Beatriz Arriaga, nº 60250
-	Susana Maria, nº 60185
-	Ruben Silva, nº 693
+	Susana Oliveira, nº 60185
+	Ruben Silva, nº 69308
 
 Identificacao do projeto desenvolvida: AntiSpamConfigurationForProfessionalMailbox
 
