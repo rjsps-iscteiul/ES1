@@ -6,9 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Read files from the paths given
+ * 
+ * @author ruijs
+ *
+ */
 public class ReadFile {
 
-	
+	/**
+	 * 
+	 * Static method that returns an ArrayList of rules when given the path for the rules.cf file
+	 * 
+	 * @param path is the path to the file 
+	 * @return ArrayList of rules 
+	 */
 	public static ArrayList<String> rulesReader(String path){
 		
 		File file = new File(path);
@@ -26,6 +38,7 @@ public class ReadFile {
 	    }
 	    
 		return (ArrayList<String>) rules;
+		
 	}
 	
 	

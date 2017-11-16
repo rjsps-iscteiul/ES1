@@ -20,9 +20,6 @@ import pt.iscte.es1.project.utils.ReadFile;
 //public abstract class FalsosGUI extends JFrame{
 public class FalsosGUI extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5240224811001438094L;
 	
 	private JTable tabela;
@@ -53,23 +50,6 @@ public class FalsosGUI extends JFrame{
 		setSize(400, 400);
 		setResizable(false);
 		
-		JScrollPane table = new JScrollPane();
-		
-		ArrayList <String> rules = ReadFile.rulesReader(rules_path);
-		String[] tableColumns = new String[] {"Regras", "Pesos"};
-		String[][] tableData = new String[rules.size()][2];
-		
-		for(int i = 0; i < rules.size(); i++){
-			tableData[i][0] = rules.get(i);
-		}
-		
-		tabela = new JTable(new DefaultTableModel(tableData, tableColumns));
-//		tabela.setDefaultEditor(tabela.getColumnClass(0), null);	//make non editable fields in table
-		
-		table.add(tabela);
-		table.setViewportView(tabela);
-
-		
 		JPanel downpanel = new JPanel();
 		downpanel.setLayout(new GridLayout(0,1));
 		
@@ -87,9 +67,8 @@ public class FalsosGUI extends JFrame{
 		downpanel.add(buttons);
 		downpanel.add(results);
 		
-		add(table, BorderLayout.CENTER);
+		add(buildTable(), BorderLayout.CENTER);
 		add(downpanel, BorderLayout.SOUTH);
-		
 		
 	}
 
@@ -99,12 +78,38 @@ public class FalsosGUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	
+	/**
+	 * Sets the local variable rules_path to the path given to the method
+	 * @param rules_path
+	 */
 	public void setRules_path(String rules_path) {
 		this.rules_path = rules_path;
 	}
 	
-
+	/**
+	 * Creates a JScrollPane including a table with the rules from the file specified in the previous screen
+	 * @return table is a JScrollPane 
+	 */
+	public JScrollPane buildTable(){
+		
+		JScrollPane table = new JScrollPane();
+		
+		ArrayList <String> rules = ReadFile.rulesReader(rules_path);
+		String[] tableColumns = new String[] {"Regras", "Pesos"};
+		String[][] tableData = new String[rules.size()][2];
+		
+		for(int i = 0; i < rules.size(); i++){
+			tableData[i][0] = rules.get(i);
+		}
+		
+		tabela = new JTable(new DefaultTableModel(tableData, tableColumns));
+		
+		table.add(tabela);
+		table.setViewportView(tabela);
+		
+		return table;
+	}
+	
 	public static void main(String[] args) {
 		new FalsosGUI().open();
 	}
