@@ -43,6 +43,7 @@ public class SearchFile extends JPanel{
     					return;
     				}
     				link.setText(file.getAbsolutePath());
+
     			}
     			
     		}
@@ -50,5 +51,9 @@ public class SearchFile extends JPanel{
         add(link, BorderLayout.CENTER);
         add(button, BorderLayout.EAST);
     }
+
+	public JTextField getLink() {
+		return link;
+	}
     
 }

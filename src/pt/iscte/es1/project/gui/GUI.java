@@ -26,13 +26,13 @@ public class GUI extends JFrame{
 	}
 	
 	protected void buildGUI() {
-		setSize(300, 180);
+		setSize(600, 180);
 		setResizable(false);
 		JPanel gui = new JPanel(new BorderLayout()); 
 		gui.setBorder(new BevelBorder(BevelBorder.RAISED)); 
 		
 		JPanel north = new JPanel(new GridLayout(0,1)); 
-		north.add(new JLabel("<html>Configurar filtragem anti-spam <br> para Professional Mailbox</html>", SwingConstants.CENTER)); 
+		north.add(new JLabel("Configurar filtragem anti-spam para Professional Mailbox", SwingConstants.CENTER)); 
 		gui.add(north);
 		
 		JPanel south = new JPanel(new GridLayout(0,1)); 
@@ -42,7 +42,8 @@ public class GUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ConfigureGUI newframe = new ConfigureGUI("Configurar Professional Mailbox");
+				System.out.println("Configuração Anti-Spam iniciada!");
+				ConfigureGUI newframe = new ConfigureGUI("Configurar Anti-Spam para Professional Mailbox");
 				newframe.open();
 				newframe.setLocationRelativeTo(null);
 				dispose();

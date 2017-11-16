@@ -2,6 +2,8 @@ package pt.iscte.es1.project.gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +21,8 @@ public class ConfigureGUI extends GUI{
 	 * 
 	 */
 	private static final long serialVersionUID = -9149707610120461378L;
-
+	
+	
 	public ConfigureGUI(String s) {
 		super(s);
 	}
@@ -36,8 +39,11 @@ public class ConfigureGUI extends GUI{
 		
 		JPanel buttons = new JPanel(new GridLayout(0,1)); 
 		buttons.setBorder(new EmptyBorder(10,0,10,0));
-		JButton auto = new JButton("<html> Configuração <br> Automática </html>");
-		JButton manual = new JButton("<html> Configuração <br> Manual </html>");
+		
+		JButton auto = new JButton("<html> Configuração Automática </html>");
+		JButton manual = new JButton("<html> Configuração Manual </html>");
+		
+		
 		buttons.add(auto);
 		buttons.add(manual);
 
@@ -60,6 +66,30 @@ public class ConfigureGUI extends GUI{
 		center.add(buttons, BorderLayout.EAST);
 		add(center);
 //		add(gui);
+
+		
+		auto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Escolheu a Configuração Automática. \n" + "Foi carreado o ficheiro de regras que se encontra em: " + rules.getLink().getText());
+				FalsosGUI automaticGUI = new FalsosAuto("Configuração Automática", rules.getLink().getText(), ham.getLink().getText(), spam.getLink().getText());
+				automaticGUI.open();
+				dispose();
+				
+			}
+		});;
+		
+		manual.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Escolheu a Configuração Manual. \n" + "Foi carreado o ficheiro de regras que se encontra em: " + rules.getLink().getText());
+				FalsosGUI manualGUI = new FalsosManual("Configuração Manual", rules.getLink().getText(), ham.getLink().getText(), spam.getLink().getText());
+				manualGUI.open();
+				dispose();
+			}
+		});
+		
+		
 
 	}
 	

@@ -1,14 +1,21 @@
 package pt.iscte.es1.project.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+import pt.iscte.es1.project.utils.ReadFile;
 
 //public abstract class FalsosGUI extends JFrame{
 public class FalsosGUI extends JFrame{
@@ -18,25 +25,50 @@ public class FalsosGUI extends JFrame{
 	 */
 	private static final long serialVersionUID = 5240224811001438094L;
 	
-	private JTable tabela = new JTable();
+	private JTable tabela;
 	private JButton avaliar = new JButton("Avaliar");
 	private JButton guardar = new JButton("Guardar");
-	private JLabel fake_neg_label = new JLabel("Falsos Negativos");
+	private JLabel fake_neg_label = new JLabel("Falsos Negativos", SwingConstants.CENTER);
 	private JTextField fake_neg = new JTextField();
-	private JLabel fake_pos_label = new JLabel("Falsos Positivos");
+	private JLabel fake_pos_label = new JLabel("Falsos Positivos", SwingConstants.CENTER);
 	private JTextField fake_pos = new JTextField();
 	
-	public FalsosGUI() {
+	private String rules_path;
+	private String ham_path;
+	private String spam_path;
+	
+	public FalsosGUI(){
+		buildGUI();
+	}
+	
+	public FalsosGUI(String title, String rules_path, String ham_path, String spam_path) {
+		setTitle(title);
+		setRules_path(rules_path);
 		buildGUI();
 	}
 
 	protected void buildGUI() {
+		
 		setLayout(new BorderLayout());
-		setSize(300, 400);
+		setSize(400, 400);
 		setResizable(false);
 		
-		JPanel table = new JPanel();
+		JScrollPane table = new JScrollPane();
+		
+		ArrayList <String> rules = ReadFile.rulesReader(rules_path);
+		String[] tableColumns = new String[] {"Regras", "Pesos"};
+		String[][] tableData = new String[rules.size()][2];
+		
+		for(int i = 0; i < rules.size(); i++){
+			tableData[i][0] = rules.get(i);
+		}
+		
+		tabela = new JTable(new DefaultTableModel(tableData, tableColumns));
+//		tabela.setDefaultEditor(tabela.getColumnClass(0), null);	//make non editable fields in table
+		
 		table.add(tabela);
+		table.setViewportView(tabela);
+
 		
 		JPanel downpanel = new JPanel();
 		downpanel.setLayout(new GridLayout(0,1));
@@ -57,6 +89,8 @@ public class FalsosGUI extends JFrame{
 		
 		add(table, BorderLayout.CENTER);
 		add(downpanel, BorderLayout.SOUTH);
+		
+		
 	}
 
 	public void open() {
@@ -65,6 +99,12 @@ public class FalsosGUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	
+	public void setRules_path(String rules_path) {
+		this.rules_path = rules_path;
+	}
+	
+
 	public static void main(String[] args) {
 		new FalsosGUI().open();
 	}
