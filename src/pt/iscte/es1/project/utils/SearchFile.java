@@ -12,13 +12,16 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Search files from the windows explorer
+ * 
+ * @author smmoa
+ *
+ */
+
 public class SearchFile extends JPanel{
 	
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1773555809906973302L;
-	//	private File file = new File("C:\\");
 	private JTextField link = new JTextField();
 	private JButton button = new JButton("Open C:\\");
 	

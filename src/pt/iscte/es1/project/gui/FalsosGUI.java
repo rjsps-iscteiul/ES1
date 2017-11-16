@@ -1,7 +1,6 @@
 package pt.iscte.es1.project.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -13,9 +12,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pt.iscte.es1.project.utils.ReadFile;
+
+/**
+ * Creation of the window to configure and evaluate
+ * @author smmoa
+ * @author ruijs
+ */
 
 //public abstract class FalsosGUI extends JFrame{
 public class FalsosGUI extends JFrame{
@@ -34,16 +40,29 @@ public class FalsosGUI extends JFrame{
 	private String ham_path;
 	private String spam_path;
 	
+	/**
+	 * Constructor
+	 */
 	public FalsosGUI(){
 		buildGUI();
 	}
 	
+	/**
+	 * Constructor
+	 * @param title
+	 * @param rules_path
+	 * @param ham_path
+	 * @param spam_path
+	 */
 	public FalsosGUI(String title, String rules_path, String ham_path, String spam_path) {
 		setTitle(title);
 		setRules_path(rules_path);
 		buildGUI();
 	}
 
+	/**
+	 * Method that creates the window look
+	 */
 	protected void buildGUI() {
 		
 		setLayout(new BorderLayout());
@@ -63,11 +82,15 @@ public class FalsosGUI extends JFrame{
 		results.add(fake_neg);
 		results.add(fake_pos_label);
 		results.add(fake_pos);
+		results.setBorder(new EmptyBorder(0,0,10,20));
 		
 		downpanel.add(buttons);
 		downpanel.add(results);
 		
-		add(buildTable(), BorderLayout.CENTER);
+		JScrollPane table = buildTable();
+		table.setBorder(new EmptyBorder(10,20,10,0));
+		
+		add(table, BorderLayout.CENTER);
 		add(downpanel, BorderLayout.SOUTH);
 		
 	}

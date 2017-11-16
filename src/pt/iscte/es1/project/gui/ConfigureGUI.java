@@ -15,24 +15,33 @@ import javax.swing.border.EmptyBorder;
 import pt.iscte.es1.project.gui.GUI;
 import pt.iscte.es1.project.utils.SearchFile;
 
+/**
+ * Creation of the window to select files to configure
+ * @author smmoa
+ *
+ */
+
 public class ConfigureGUI extends GUI{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9149707610120461378L;
 	
-	
+	/**
+	 * Constructor
+	 * @param s
+	 */
 	public ConfigureGUI(String s) {
 		super(s);
 	}
-
+	
+	/**
+	 * Method that creates the window look
+	 */
 	@Override
 	protected void buildGUI() {
 		setSize(600, 200);
 		setResizable(false);
 		
-		add(new JLabel("Directórios dos ficheiros:", SwingConstants.LEFT), BorderLayout.NORTH);
+		add(new JLabel("Directoria dos ficheiros:", SwingConstants.LEFT), BorderLayout.NORTH);
 		
 		JPanel center = new JPanel(new BorderLayout());
 		center.setBorder(new BevelBorder(BevelBorder.RAISED)); 
@@ -42,7 +51,6 @@ public class ConfigureGUI extends GUI{
 		
 		JButton auto = new JButton("<html> Configuração Automática </html>");
 		JButton manual = new JButton("<html> Configuração Manual </html>");
-		
 		
 		buttons.add(auto);
 		buttons.add(manual);
@@ -65,9 +73,7 @@ public class ConfigureGUI extends GUI{
 		center.add(direct, BorderLayout.CENTER);
 		center.add(buttons, BorderLayout.EAST);
 		add(center);
-//		add(gui);
 
-		
 		auto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -88,8 +94,6 @@ public class ConfigureGUI extends GUI{
 				dispose();
 			}
 		});
-		
-		
 
 	}
 	

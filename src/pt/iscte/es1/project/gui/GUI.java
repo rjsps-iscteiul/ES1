@@ -13,18 +13,28 @@ import javax.swing.SwingConstants;
 
 import javax.swing.border.*; 
 
+/**
+ * Creation of the welcome window
+ * @author smmoa
+ *
+ */
+
 public class GUI extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2354561480505194562L;
 	
+/**
+ * Constructor
+ * @param s
+ */
 	public GUI (String s) {
 		setTitle(s);
 		buildGUI();
 	}
 	
+/**
+ * Method that creates the window look
+ */
 	protected void buildGUI() {
 		setSize(600, 180);
 		setResizable(false);
