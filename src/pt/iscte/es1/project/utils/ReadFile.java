@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import pt.iscte.es1.project.resources.msg.Mensagem;
+
 /**
  * Read files from the paths given
  * 
@@ -41,7 +43,41 @@ public class ReadFile {
 		
 	}
 	
+	public static ArrayList<Mensagem> messageReader(String path){
+		
+		File file = new File(path);
+		ArrayList<Mensagem> messages = new ArrayList<Mensagem>();
+	
+	    try {
+	        Scanner sc = new Scanner(file);
+	        while (sc.hasNextLine()) {
+	        	
+	        	String [] split = sc.nextLine().split("\\t");
+	        	Mensagem msg= new Mensagem();
+	        	ArrayList<String> r= new ArrayList<String>();
+	        	
+	        	msg.setId(split[0]);
+	        	for (int i = 1; i<split.length; i++){
+	        		r.add(split[i]);
+	        	}
+	        	
+	        	msg.setRules(r);
+	        	messages.add(msg);
+	        }
+	        sc.close();
+	    } 
+	    catch (FileNotFoundException e) {
+	        System.out.println("Ficheiro não encontrado.");
+	    }
+		return messages;
+	}
 	
 	
+//	public static void main(String[] args) {
+//		ReadFile r = new ReadFile();
+//		ArrayList<Mensagem> msgs = r.messageReader("C:/Users/Beatriz/Desktop/Nova pasta/spam.log");
+//		System.out.println("Mensagem: " + msgs.get(0).getId());
+//		System.out.println("Regras: " + msgs.get(0).getRules());	
+//	}
 	
 }
