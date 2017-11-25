@@ -3,6 +3,7 @@ package pt.iscte.es1.project.gui;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import pt.iscte.es1.project.resources.msg.Mensagem;
 import pt.iscte.es1.project.utils.ReadFile;
 
 /**
@@ -35,10 +37,12 @@ public class FalsosGUI extends JFrame{
 	private JTextField fake_neg = new JTextField();
 	private JLabel fake_pos_label = new JLabel("Falsos Positivos", SwingConstants.CENTER);
 	private JTextField fake_pos = new JTextField();
+	private ArrayList<String> rules ;
 	
 	private String rules_path;
 	private String ham_path;
 	private String spam_path;
+	
 	
 	/**
 	 * Constructor
@@ -117,7 +121,7 @@ public class FalsosGUI extends JFrame{
 		
 		JScrollPane table = new JScrollPane();
 		
-		ArrayList <String> rules = ReadFile.rulesReader(rules_path);
+		rules = ReadFile.rulesReader(rules_path);
 		String[] tableColumns = new String[] {"Regras", "Pesos"};
 		String[][] tableData = new String[rules.size()][2];
 		
@@ -136,5 +140,57 @@ public class FalsosGUI extends JFrame{
 	public static void main(String[] args) {
 		new FalsosGUI().open();
 	}
+	
+	public HashMap<String, Double> transformIntoHashMap(double[] pesos){
+		HashMap<String,Double> hash = new HashMap<String,Double>();
+		for(int i = 0 ; i<pesos.length;i++) {
+			hash.put(rules.get(i) , pesos[i]);
+		}
+		return hash ;
+	}
+	
+	public int[] evaluate(HashMap<String,Double> regrasComPesos) {
+		int falsosPositivos=0;
+		int falsosNegativos= 0;
+		for(spam : spamList) {
+			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos ,spam);
+			if(pesoFinalMensagem < 5) {
+				falsosNegativos++;
+			}
+		}
+		
+		for(ham : hamList) {
+			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos, ham);
+			if(pesoFinalMensagem > 5) {
+				falsosPositivos++;
+			}
+		}
+		
+		int[] falsosPositivosNegativos= new int[2] ;
+		falsosPositivosNegativos[0] = falsosPositivos;
+		falsosPositivosNegativos[0] = falsosNegativos;
+		
+		return falsosPositivosNegativos ;
+			
+		
+	}
+	
+	public double getPesoFinalMensagem(HashMap<String,Double> regrasComPesos , Mensagem mensagem) {
+		double pesoFinal= 0;
+		for(String regra  : mensagem.getRules()) {
+			pesoFinal+= regrasComPesos.get(regra) ;
+		}
+		return pesoFinal;
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
