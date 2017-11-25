@@ -42,6 +42,8 @@ public class FalsosGUI extends JFrame{
 	private String rules_path;
 	private String ham_path;
 	private String spam_path;
+	private ArrayList<Mensagem> hamList = new ArrayList<Mensagem>();
+	private ArrayList<Mensagem> spamList = new ArrayList<Mensagem>();
 	
 	
 	/**
@@ -61,6 +63,8 @@ public class FalsosGUI extends JFrame{
 	public FalsosGUI(String title, String rules_path, String ham_path, String spam_path) {
 		setTitle(title);
 		setRules_path(rules_path);
+		hamList = ReadFile.messageReader(ham_path);
+		spamList = ReadFile.messageReader(spam_path);
 		buildGUI();
 	}
 
@@ -113,6 +117,7 @@ public class FalsosGUI extends JFrame{
 		this.rules_path = rules_path;
 	}
 	
+
 	/**
 	 * Creates a JScrollPane including a table with the rules from the file specified in the previous screen
 	 * @return table is a JScrollPane 
@@ -152,14 +157,14 @@ public class FalsosGUI extends JFrame{
 	public int[] evaluate(HashMap<String,Double> regrasComPesos) {
 		int falsosPositivos=0;
 		int falsosNegativos= 0;
-		for(spam : spamList) {
+		for(Mensagem spam : spamList) {
 			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos ,spam);
 			if(pesoFinalMensagem < 5) {
 				falsosNegativos++;
 			}
 		}
 		
-		for(ham : hamList) {
+		for(Mensagem ham : hamList) {
 			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos, ham);
 			if(pesoFinalMensagem > 5) {
 				falsosPositivos++;
