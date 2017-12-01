@@ -115,6 +115,7 @@ public class FalsosGUI extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Avaliação em progresso...");
 				if(!manual) {
 					avaliarAutomatico();
 				}
@@ -183,7 +184,6 @@ public class FalsosGUI extends JFrame{
 				else dadosinvalidos=true;
 			else {
 				pesos[i]=0;
-			System.out.println(i);
 			}
 		}
 		}catch(Exception e) {
@@ -331,7 +331,6 @@ public class FalsosGUI extends JFrame{
 
 	private void updateTablePesos(double [] pesos) {
 		for(int i = 0 ; i<rules.size() ; i++) {
-			System.out.println(pesos[i]);
 			tabela.setValueAt(pesos[i] , i, 1);
 		}
 

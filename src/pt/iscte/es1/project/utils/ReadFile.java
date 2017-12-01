@@ -91,7 +91,6 @@ public class ReadFile {
 	        while (sc.hasNextLine()) {
 	        	
 	        	String[] split = sc.nextLine().split(" ");
-	        	System.out.println(split);
 	        	if(i == 0){
 	        		falsos_positivos = Double.parseDouble(split[0]);
 		        	falsos_negativos = Double.parseDouble(split[1]);
@@ -114,7 +113,7 @@ public class ReadFile {
 	    catch (FileNotFoundException e) {
 	        System.out.println("Ficheiro não encontrado.");
 	    }
-		System.out.println(resultadoFinal[0]  +"-" + resultadoFinal[1] + "-" + resultadoFinal[2]);
+		System.out.println("Falsos Positivos: " + resultadoFinal[0]  + " / Falsos Negativos: " + resultadoFinal[1] + " / Configuração Escolhida: " + resultadoFinal[2]);
 		return resultadoFinal; 
 	}
 	
@@ -133,7 +132,7 @@ public class ReadFile {
 	        	if(i == nlinha){	
 	        		for(int j = 0 ; j<split.length ; j++){
 	        			pesos[j] = Double.parseDouble(split[j]);
-	        			System.out.println("LEITURA  DE PESOS " + pesos[j]);
+//	        			System.out.println("LEITURA  DE PESOS " + pesos[j]);
 	        		}
 	        	}
 	        	
@@ -159,6 +158,7 @@ public class ReadFile {
 				save.newLine();
 		}
 		save.close();
+		System.out.println("Guardadas configurações no ficheiro rules.cf");
 		} catch (IOException e) {
 			System.out.println("Erro a guardar ficheiro de configurações!");		
 		}
