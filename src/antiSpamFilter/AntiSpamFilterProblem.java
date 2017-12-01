@@ -48,7 +48,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    
 	    regraPeso = falsosgui.transformIntoHashMap(pesos);
 	    fx = falsosgui.evaluate(regraPeso);
-	    System.out.println(fx[0] + "-" + fx[1]); 
+//	    System.out.println(fx[0] + "-" + fx[1]); 
 	    solution.setObjective(0, fx[0]);
 	    solution.setObjective(1, fx[1]);
 	  }

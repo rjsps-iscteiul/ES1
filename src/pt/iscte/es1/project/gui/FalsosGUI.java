@@ -70,6 +70,9 @@ public class FalsosGUI extends JFrame{
 	private ArrayList<Mensagem> spamList = new ArrayList<Mensagem>();
 
 	protected boolean manual ;
+
+
+	protected boolean priorEvaluation;
 	private static final int INDEPENDENT_RUNS = 5 ;
 
 	/**
@@ -98,7 +101,7 @@ public class FalsosGUI extends JFrame{
 	 * Method that creates the window look
 	 */
 	protected void buildGUI() {
-
+		priorEvaluation=false;
 		setLayout(new BorderLayout());
 		setSize(400, 400);
 		setResizable(false);
@@ -122,7 +125,20 @@ public class FalsosGUI extends JFrame{
 			}
 		});
 		buttons.add(guardar);
+		guardar.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(priorEvaluation)
+					guardarResultados();
+				else {
+					System.out.println("Necessita realizar a avaliação da configuração antes de a poder guardar");
+					return ;
+				}
+
+			}
+
+		});
 		JPanel results = new JPanel();
 		results.setLayout(new GridLayout(2,0));
 		results.add(fake_neg_label);
@@ -142,18 +158,46 @@ public class FalsosGUI extends JFrame{
 
 	}
 
+	protected void guardarResultados() {
+
+		double[] pesos = new double[rules.size()];
+		for(int i = 0 ; i<rules.size() ; i++) {
+			if(tabela.getValueAt(i, 1)!=null)
+				if((double) tabela.getValueAt(i, 1) < 5  || (double) tabela.getValueAt(i, 1) > -5)
+					pesos[i]=(double) tabela.getValueAt(i, 1);	
+
+				else 
+					pesos[i]=0;	
+		}
+		ReadFile.guardarConfig(rules , pesos);	
+	}
+
 	protected void avaliarManual() {
 		double[] pesos = new double[rules.size()];
 		double [] falsosPositivosNegativos = new double[2];
-		for(int i = 0 ; i<rules.size() ; i++) {
+		boolean dadosinvalidos=false;
+		try{for(int i = 0 ; i<rules.size() ; i++) {
 			if(tabela.getValueAt(i, 1)!=null)
-				pesos[i]=(double) tabela.getValueAt(i, 1);	
-			else 
-				pesos[i]=0;	
+				if((double) tabela.getValueAt(i, 1) < 5  || (double) tabela.getValueAt(i, 1) > -5)
+					pesos[i]=(double) tabela.getValueAt(i, 1);	
+				else dadosinvalidos=true;
+			else {
+				pesos[i]=0;
+			System.out.println(i);
+			}
 		}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Peso(s) com valores invalidos");
+		}
+		if(dadosinvalidos) {
+			System.out.println("Peso(s) com valores invalidos");
+			return ;
+		}
+
 		falsosPositivosNegativos = evaluate(transformIntoHashMap(pesos));
 		updateFalsosGui(falsosPositivosNegativos);
-
+		priorEvaluation=true;
 	}
 
 	public void open() {
@@ -237,8 +281,8 @@ public class FalsosGUI extends JFrame{
 		double pesoFinal= 0;
 		for(String regra  : mensagem.getRules()) {
 			if(regrasComPesos.containsKey(regra))
-				pesoFinal+= regrasComPesos.get(regra) ;
-
+				pesoFinal+= regrasComPesos.get(regra);
+			
 		}
 		return pesoFinal;
 	}
@@ -274,13 +318,23 @@ public class FalsosGUI extends JFrame{
 			new GenerateLatexTablesWithStatistics(experiment).run() ;
 			new GenerateBoxplotsWithR<>(experiment).setRows(1).setColumns(1).run() ;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		falta ler ficheiros 
-		
-		updateFalsosGui(); 
+		double[] resultadoFinal = ReadFile.fpfnReader();
+		double[] pesos = ReadFile.pesosReader(resultadoFinal[2] , rules.size());
+		updateTablePesos(pesos);
+
+		updateFalsosGui(resultadoFinal);
+		priorEvaluation=true;
+	}
+
+	private void updateTablePesos(double [] pesos) {
+		for(int i = 0 ; i<rules.size() ; i++) {
+			System.out.println(pesos[i]);
+			tabela.setValueAt(pesos[i] , i, 1);
+		}
+
 	}
 
 	private void updateFalsosGui(double[] falsosPositivosNegativos) {

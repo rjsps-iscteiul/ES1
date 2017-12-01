@@ -82,16 +82,16 @@ public class ReadFile {
 		double falsos_positivos = 0;
 		double falsos_negativos = 0;
 		
-		File file = new File("/ES1-2017/experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rf");
+		File file = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rf");
 	
 	    try {
 	        Scanner sc = new Scanner(file);
 	        int i = 0;
-	        
+	        int linhafinal = 0;
 	        while (sc.hasNextLine()) {
 	        	
 	        	String[] split = sc.nextLine().split(" ");
-	        	
+	        	System.out.println(split);
 	        	if(i == 0){
 	        		falsos_positivos = Double.parseDouble(split[0]);
 		        	falsos_negativos = Double.parseDouble(split[1]);
@@ -100,6 +100,7 @@ public class ReadFile {
 	        		if(Double.parseDouble(split[0]) < falsos_positivos){
 	        			falsos_positivos = Double.parseDouble(split[0]);
 	    	        	falsos_negativos = Double.parseDouble(split[1]);
+	    	        	linhafinal=i;
 	        		}
 	        	}
 	        	i++;
@@ -108,12 +109,12 @@ public class ReadFile {
 	        
 	        resultadoFinal[0] = falsos_positivos;
 	        resultadoFinal[1] = falsos_negativos;
-	        resultadoFinal[2] = i;    
+	        resultadoFinal[2] = linhafinal;    
 	    } 
 	    catch (FileNotFoundException e) {
 	        System.out.println("Ficheiro não encontrado.");
 	    }
-		
+		System.out.println(resultadoFinal[0]  +"-" + resultadoFinal[1] + "-" + resultadoFinal[2]);
 		return resultadoFinal; 
 	}
 	
@@ -121,19 +122,18 @@ public class ReadFile {
 		
 		double[] pesos = new double[numRegras];
 		
-		File file = new File("/ES1-2017/experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
+		File file = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
 		
 	    try {
 	        Scanner sc = new Scanner(file);
-	        int i = 1;
+	        int i = 0;
 	        
 	        while (sc.hasNextLine()) {
-	        	
-	        	if(i == nlinha){
-	        		String[] split = sc.nextLine().split(" ");
-	        		
+	        	String[] split = sc.nextLine().split(" ");
+	        	if(i == nlinha){	
 	        		for(int j = 0 ; j<split.length ; j++){
-	        			pesos[i] = Double.parseDouble(split[i]);
+	        			pesos[j] = Double.parseDouble(split[j]);
+	        			System.out.println("LEITURA  DE PESOS " + pesos[j]);
 	        		}
 	        	}
 	        	
@@ -151,16 +151,16 @@ public class ReadFile {
 	public static void guardarConfig(ArrayList<String> rules, double[] pesos){
 		
 		try {
-		File file = new File("/ES1-2017/AntiSpamConfigurationForProfessionalMailbox/rules.cf");
+		File file = new File("AntiSpamConfigurationForProfessionalMailbox/rules.cf");
 		BufferedWriter save = new BufferedWriter(new FileWriter(file));
 		
 		for(int i = 0; i<rules.size(); i++){
-				save.write(rules.get(i) + Double.toString(pesos[i]));
+				save.write(rules.get(i) +  "	" + Double.toString(pesos[i]));
 				save.newLine();
 		}
 		save.close();
 		} catch (IOException e) {
-			System.out.println("Erro a guardar ficheiro de configurações!");
+			System.out.println("Erro a guardar ficheiro de configurações!");		
 		}
 		
 		
