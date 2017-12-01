@@ -1,7 +1,11 @@
 package pt.iscte.es1.project.utils;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -70,6 +74,97 @@ public class ReadFile {
 	        System.out.println("Ficheiro não encontrado.");
 	    }
 		return messages;
+	}
+	
+	public static double[] fpfnReader(){
+		
+		double[] resultadoFinal = new double[3];
+		double falsos_positivos = 0;
+		double falsos_negativos = 0;
+		
+		File file = new File("/ES1-2017/experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rf");
+	
+	    try {
+	        Scanner sc = new Scanner(file);
+	        int i = 0;
+	        
+	        while (sc.hasNextLine()) {
+	        	
+	        	String[] split = sc.nextLine().split(" ");
+	        	
+	        	if(i == 0){
+	        		falsos_positivos = Double.parseDouble(split[0]);
+		        	falsos_negativos = Double.parseDouble(split[1]);
+	        	}
+	        	else{
+	        		if(Double.parseDouble(split[0]) < falsos_positivos){
+	        			falsos_positivos = Double.parseDouble(split[0]);
+	    	        	falsos_negativos = Double.parseDouble(split[1]);
+	        		}
+	        	}
+	        	i++;
+	        }
+	        sc.close();
+	        
+	        resultadoFinal[0] = falsos_positivos;
+	        resultadoFinal[1] = falsos_negativos;
+	        resultadoFinal[2] = i;    
+	    } 
+	    catch (FileNotFoundException e) {
+	        System.out.println("Ficheiro não encontrado.");
+	    }
+		
+		return resultadoFinal; 
+	}
+	
+	public static double[] pesosReader(double nlinha, int numRegras){
+		
+		double[] pesos = new double[numRegras];
+		
+		File file = new File("/ES1-2017/experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
+		
+	    try {
+	        Scanner sc = new Scanner(file);
+	        int i = 1;
+	        
+	        while (sc.hasNextLine()) {
+	        	
+	        	if(i == nlinha){
+	        		String[] split = sc.nextLine().split(" ");
+	        		
+	        		for(int j = 0 ; j<split.length ; j++){
+	        			pesos[i] = Double.parseDouble(split[i]);
+	        		}
+	        	}
+	        	
+	        	i++;
+	        }
+	        sc.close();
+	    } 
+	    catch (FileNotFoundException e) {
+	        System.out.println("Ficheiro não encontrado.");
+	    }
+		
+		return pesos;
+	}
+	
+	public static void guardarConfig(ArrayList<String> rules, double[] pesos){
+		
+		try {
+		File file = new File("/ES1-2017/AntiSpamConfigurationForProfessionalMailbox/rules.cf");
+		BufferedWriter save = new BufferedWriter(new FileWriter(file));
+		
+		for(int i = 0; i<rules.size(); i++){
+				save.write(rules.get(i) + Double.toString(pesos[i]));
+				save.newLine();
+		}
+		save.close();
+		} catch (IOException e) {
+			System.out.println("Erro a guardar ficheiro de configurações!");
+		}
+		
+		
+		
 	}
 	
 	
