@@ -25,6 +25,9 @@ public class SearchFile extends JPanel{
 	private JTextField link = new JTextField();
 	private JButton button = new JButton("Open C:\\");
 	
+	/**
+	 * Constructor
+	 */
     public SearchFile() {
     	setLayout(new BorderLayout());
     	button.addActionListener(new ActionListener() {

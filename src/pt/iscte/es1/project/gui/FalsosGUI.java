@@ -42,11 +42,11 @@ import pt.iscte.es1.project.resources.msg.Mensagem;
 import pt.iscte.es1.project.utils.ReadFile;
 
 
-
 /**
  * Creation of the window to configure and evaluate
  * @author smmoa
  * @author ruijs
+ * @author rdsas
  */
 
 //public abstract class FalsosGUI extends JFrame{
@@ -64,13 +64,12 @@ public class FalsosGUI extends JFrame{
 	private ArrayList<String> rules ;
 
 	private String rules_path;
-	private String ham_path;
-	private String spam_path;
+//	private String ham_path;
+//	private String spam_path;
 	private ArrayList<Mensagem> hamList = new ArrayList<Mensagem>();
 	private ArrayList<Mensagem> spamList = new ArrayList<Mensagem>();
 
 	protected boolean manual ;
-
 
 	protected boolean priorEvaluation;
 	private static final int INDEPENDENT_RUNS = 5 ;
@@ -159,6 +158,9 @@ public class FalsosGUI extends JFrame{
 
 	}
 
+	/**
+	 * Method that saves de results
+	 */
 	protected void guardarResultados() {
 
 		double[] pesos = new double[rules.size()];
@@ -173,31 +175,35 @@ public class FalsosGUI extends JFrame{
 		ReadFile.guardarConfig(rules , pesos);	
 	}
 
+	/**
+	 * Method that does the manual evaluation
+	 */
 	protected void avaliarManual() {
 		double[] pesos = new double[rules.size()];
-		double [] falsosPositivosNegativos = new double[2];
-		boolean dadosinvalidos=false;
-		try{for(int i = 0 ; i<rules.size() ; i++) {
-			if(tabela.getValueAt(i, 1)!=null)
-				if((double) tabela.getValueAt(i, 1) < 5  || (double) tabela.getValueAt(i, 1) > -5)
-					pesos[i]=(double) tabela.getValueAt(i, 1);	
-				else dadosinvalidos=true;
-			else {
-				pesos[i]=0;
+		double[] falsosPositivosNegativos = new double[2];
+		boolean dadosinvalidos = false;
+		try{
+			for(int i = 0 ; i < rules.size() ; i++) {
+				if(tabela.getValueAt(i, 1) != null) {
+					if((double) tabela.getValueAt(i, 1) < 5  || (double) tabela.getValueAt(i, 1) > -5)
+						pesos[i] = (double) tabela.getValueAt(i, 1);	
+					else dadosinvalidos = true;
+				} else {
+					pesos[i] = 0;
+				}
 			}
-		}
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Peso(s) com valores invalidos");
+			System.out.println("Peso(s) com valores inválidos");
 		}
 		if(dadosinvalidos) {
-			System.out.println("Peso(s) com valores invalidos");
+			System.out.println("Peso(s) com valores inválidos");
 			return ;
 		}
 
 		falsosPositivosNegativos = evaluate(transformIntoHashMap(pesos));
 		updateFalsosGui(falsosPositivosNegativos);
-		priorEvaluation=true;
+		priorEvaluation = true;
 	}
 
 	public void open() {
@@ -219,7 +225,7 @@ public class FalsosGUI extends JFrame{
 	 * Creates a JScrollPane including a table with the rules from the file specified in the previous screen
 	 * @return table is a JScrollPane 
 	 */
-	public JScrollPane buildTable(){
+	public JScrollPane buildTable() {
 
 		JScrollPane table = new JScrollPane();
 
@@ -239,23 +245,37 @@ public class FalsosGUI extends JFrame{
 		return table;
 	}
 
+	/**
+	 * Main method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new FalsosGUI().open();
 	}
 
+	/**
+	 * Method that transforms into HashMap
+	 * @param pesos
+	 * @return hash
+	 */
 	public HashMap<String, Double> transformIntoHashMap(double[] pesos){
 		HashMap<String,Double> hash = new HashMap<String,Double>();
-		for(int i = 0 ; i<pesos.length;i++) {
-			hash.put(rules.get(i) , pesos[i]);
+		for(int i = 0 ; i < pesos.length;i++) {
+			hash.put(rules.get(i), pesos[i]);
 		}
-		return hash ;
+		return hash;
 	}
 
+	/**
+	 * Method that evaluates the weights
+	 * @param regrasComPesos
+	 * @return falsosPositivosNegativos
+	 */
 	public double[] evaluate(HashMap<String,Double> regrasComPesos) {
-		double falsosPositivos=0;
-		double falsosNegativos= 0;
+		double falsosPositivos = 0;
+		double falsosNegativos = 0;
 		for(Mensagem spam : spamList) {
-			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos ,spam);
+			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos, spam);
 			if(pesoFinalMensagem < 5) {
 				falsosNegativos++;
 			}
@@ -272,23 +292,28 @@ public class FalsosGUI extends JFrame{
 		falsosPositivosNegativos[0] = falsosPositivos;
 		falsosPositivosNegativos[1] = falsosNegativos;
 
-		return falsosPositivosNegativos ;
-
-
+		return falsosPositivosNegativos;
 	}
 
+	/**
+	 * Method that gets the final weight of the message
+	 * @param regrasComPesos
+	 * @param mensagem
+	 * @return pesoFinal
+	 */
 	public double getPesoFinalMensagem(HashMap<String,Double> regrasComPesos , Mensagem mensagem) {
-		double pesoFinal= 0;
+		double pesoFinal = 0;
 		for(String regra  : mensagem.getRules()) {
 			if(regrasComPesos.containsKey(regra))
-				pesoFinal+= regrasComPesos.get(regra);
-			
+				pesoFinal+= regrasComPesos.get(regra);	
 		}
 		return pesoFinal;
 	}
 
 
-
+	/**
+	 * Method that evaluates the automatic version
+	 */
 	public void avaliarAutomatico() {
 		String experimentBaseDirectory = "experimentBaseDirectory";
 
@@ -322,25 +347,38 @@ public class FalsosGUI extends JFrame{
 		}
 
 		double[] resultadoFinal = ReadFile.fpfnReader();
-		double[] pesos = ReadFile.pesosReader(resultadoFinal[2] , rules.size());
+		double[] pesos = ReadFile.pesosReader(resultadoFinal[2], rules.size());
 		updateTablePesos(pesos);
 
 		updateFalsosGui(resultadoFinal);
-		priorEvaluation=true;
+		priorEvaluation = true;
 	}
 
+	/**
+	 * Method that updates the table
+	 * @param pesos
+	 */
 	private void updateTablePesos(double [] pesos) {
-		for(int i = 0 ; i<rules.size() ; i++) {
-			tabela.setValueAt(pesos[i] , i, 1);
+		for(int i = 0 ; i < rules.size() ; i++) {
+			tabela.setValueAt(pesos[i], i, 1);
 		}
-
 	}
 
+	/**
+	 * Method that updates the positive and negative fakes
+	 * @param falsosPositivosNegativos
+	 * @return algorithms
+	 */
 	private void updateFalsosGui(double[] falsosPositivosNegativos) {
 		fake_pos.setText(String.valueOf(falsosPositivosNegativos[0]));
 		fake_neg.setText(String.valueOf(falsosPositivosNegativos[1]));
 	}
 
+	/**
+	 * Method that configures the algorithm list
+	 * @param problemList
+	 * @return algorithms
+	 */
 	static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(
 			List<ExperimentProblem<DoubleSolution>> problemList) {
 		List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithms = new ArrayList<>();
@@ -358,14 +396,4 @@ public class FalsosGUI extends JFrame{
 
 		return algorithms;
 	}
-
-
-
-
-
-
-
-
-
-
 }
