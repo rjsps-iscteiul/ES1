@@ -5,11 +5,19 @@ package pt.iscte.es1.project.gui.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import pt.iscte.es1.project.gui.FalsosAuto;
+import pt.iscte.es1.project.gui.FalsosGUI;
+import pt.iscte.es1.project.resources.msg.Mensagem;
+import pt.iscte.es1.project.utils.ReadFile;
 
 /**
  * @author Beatriz
@@ -50,7 +58,12 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testFalsosAuto() {
-		fail("Not yet implemented");
+		String title= "";
+		
+		String ham_path= "Files/ham.log";
+		String spam_path= "Files/spam.log";
+		String rules_path= "Files/rules.cf";
+		FalsosAuto falsosAuto= new FalsosAuto(title,rules_path,ham_path,spam_path);
 	}
 
 	/**
@@ -58,7 +71,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testFalsosGUI() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -74,7 +87,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testBuildGUI() {
-		fail("Not yet implemented");
+		FalsosAuto fa = new FalsosAuto("", "", "", "");
 	}
 
 	/**
@@ -82,7 +95,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testGuardarResultados() {
-		fail("Not yet implemented");
+		FalsosGUI fg= new FalsosGUI();
+		
 	}
 
 	/**
@@ -98,23 +112,26 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testOpen() {
-		fail("Not yet implemented");
+	
 	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#setRules_path(java.lang.String)}.
 	 */
 	@Test
-	public void testSetRules_path() {
-		fail("Not yet implemented");
+	public void testSetRules_path() {  //A funcao e chamada  no contrutor e fica logo testada
+//		FalsosGUI falsosGui= new FalsosGUI();
+//		String rules_path= "Files/rules.cf";
+//		falsosGui.setRules_path(rules_path);
 	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#buildTable()}.
 	 */
 	@Test
-	public void testBuildTable() {
-		fail("Not yet implemented");
+	public void testBuildTable() { //cena gráfica
+//		FalsosGUI fg= new FalsosGUI();
+//		fg.buildTable();
 	}
 
 	/**
@@ -122,7 +139,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testMain() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -130,7 +147,11 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testTransformIntoHashMap() {
-		fail("Not yet implemented");
+		FalsosGUI fg = new FalsosGUI("", "Files/spam.log", "", "");
+		ReadFile r = new ReadFile();
+		double[] pesos = r.pesosReader(2.0, 10);
+		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
+		
 	}
 
 	/**
@@ -138,7 +159,11 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testEvaluate() {
-		fail("Not yet implemented");
+		FalsosGUI fg= new FalsosGUI();
+		ReadFile r = new ReadFile();
+		double[] pesos= r.pesosReader(2.0, 10);
+		HashMap<String, Double> hm=fg.transformIntoHashMap(pesos);
+		double[] cenas= fg.evaluate(hm);
 	}
 
 	/**
@@ -146,7 +171,13 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testGetPesoFinalMensagem() {
-		fail("Not yet implemented");
+		FalsosAuto fa = new FalsosAuto("", "Files/spam.log", "", "");
+		Mensagem msg = new Mensagem();
+		msg.setRules(new ArrayList<String>());
+		ReadFile r = new ReadFile();
+		HashMap<String, Double> hmp = fa.transformIntoHashMap(r.pesosReader(2.0, 50));
+		fa.getPesoFinalMensagem(hmp, msg);
+		
 	}
 
 	/**
@@ -154,7 +185,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testAvaliarAutomatico() {
-		fail("Not yet implemented");
+		FalsosGUI fg= new FalsosGUI();
+		fg.avaliarAutomatico();
 	}
 
 	/**

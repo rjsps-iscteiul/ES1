@@ -5,11 +5,16 @@ package pt.iscte.es1.project.resources.msg.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import pt.iscte.es1.project.resources.msg.Mensagem;
+import pt.iscte.es1.project.utils.ReadFile;
 
 /**
  * @author Beatriz
@@ -50,7 +55,7 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testMensagem() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
 	}
 
 	/**
@@ -58,7 +63,8 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testGetId() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		msg.getId();
 	}
 
 	/**
@@ -66,7 +72,9 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testSetId() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		String id = "31";
+		msg.setId(id);
 	}
 
 	/**
@@ -74,7 +82,8 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testGetRules() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		ArrayList<String> r = msg.getRules();
 	}
 
 	/**
@@ -82,7 +91,10 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testSetRules() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		ReadFile r = new ReadFile();
+		ArrayList <String> rules = ReadFile.rulesReader("Files/rules.cf");
+		msg.setRules(rules);
 	}
 
 	/**
@@ -90,7 +102,8 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testGetSpam() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		Boolean b = msg.getSpam();
 	}
 
 	/**
@@ -98,7 +111,8 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testSetSpam() {
-		fail("Not yet implemented");
+		Mensagem msg = new Mensagem();
+		msg.setSpam(true);
 	}
 
 	/**

@@ -3,8 +3,7 @@ package pt.iscte.es1.project.resources.msg;
 import java.util.ArrayList;
 
 public class Mensagem {
-	
-	
+
 	private String id;
 	private ArrayList<String> rules;
 	private Boolean spam;  

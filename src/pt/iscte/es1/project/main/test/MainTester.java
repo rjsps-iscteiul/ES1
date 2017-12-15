@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import pt.iscte.es1.project.main.Main;
+
 /**
  * @author Beatriz
  *
@@ -50,7 +52,7 @@ public class MainTester {
 	 */
 	@Test
 	public void testMain() {
-		fail("Not yet implemented");
+		//Main main = new Main();
 	}
 
 	/**

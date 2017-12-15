@@ -11,6 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import pt.iscte.es1.project.gui.FalsosAuto;
+import pt.iscte.es1.project.gui.FalsosGUI;
+import pt.iscte.es1.project.gui.FalsosManual;
+
 /**
  * @author Beatriz
  *
@@ -50,7 +54,12 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testFalsosManual() {
-		fail("Not yet implemented");
+        String title= "";
+		String ham_path= "Files/ham.log";
+		String spam_path= "Files/spam.log";
+		String rules_path= "Files/rules.cf";
+		FalsosManual falsosManual= new FalsosManual(title,rules_path,ham_path,spam_path);
+		
 	}
 
 	/**
@@ -98,7 +107,8 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testOpen() {
-		fail("Not yet implemented");
+		FalsosGUI falsosGui= new FalsosGUI();
+		falsosGui.open();
 	}
 
 	/**
