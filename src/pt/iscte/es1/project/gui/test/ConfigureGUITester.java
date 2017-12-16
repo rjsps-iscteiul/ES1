@@ -5,6 +5,8 @@ package pt.iscte.es1.project.gui.test;
 
 import static org.junit.Assert.*;
 
+import javax.swing.JFrame;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +54,7 @@ public class ConfigureGUITester {
 	 */
 	@Test
 	public void testBuildGUI() {
-		
+		ConfigureGUI gui = new ConfigureGUI("");
 		
 	}
 
@@ -61,7 +63,7 @@ public class ConfigureGUITester {
 	 */
 	@Test
 	public void testConfigureGUI() {
-		fail("Not yet implemented");
+		ConfigureGUI gui = new ConfigureGUI("");
 	}
 
 	/**
@@ -69,7 +71,8 @@ public class ConfigureGUITester {
 	 */
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented");
+		ConfigureGUI gui = new ConfigureGUI("");
+		gui.equals(JFrame.class);
 	}
 
 }

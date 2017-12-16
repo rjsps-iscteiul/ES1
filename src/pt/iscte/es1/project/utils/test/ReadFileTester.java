@@ -5,6 +5,7 @@ package pt.iscte.es1.project.utils.test;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -87,9 +88,7 @@ public class ReadFileTester {
 	 */
 	@Test
 	public void testPesosReader() {
-		ReadFile r = new ReadFile();
-		double[] pesos= r.pesosReader(2.0, 10);
-		double[] pesos2= r.pesosReader(5.0, 20);	
+		ReadFile.pesosReader(10, 10);	
 	}
 
 	/**
@@ -97,13 +96,10 @@ public class ReadFileTester {
 	 */
 	@Test
 	public void testGuardarConfig() {
-		ReadFile r = new ReadFile();
-		ArrayList <String> rules = ReadFile.rulesReader("Files/rules.cf");
-		double[] pesos= r.pesosReader(2.0, 10);
-		ArrayList <String> rules2 = ReadFile.rulesReader("Files/rules2.cf");
-		double[] pesos2= r.pesosReader(5.0, 20);
-		r.guardarConfig(rules, pesos);
-		r.guardarConfig(rules2, pesos2);
+//		ReadFile r = new ReadFile();
+		ArrayList<String> rules = ReadFile.rulesReader("Files/rules.cf");
+		double[] pesos = ReadFile.pesosReader(10, 10);
+		ReadFile.guardarConfig(rules, pesos);
 	}
 
 	/**
@@ -111,7 +107,8 @@ public class ReadFileTester {
 	 */
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented");
+		ReadFile f = new ReadFile();
+		f.equals(ReadFile.class);
 	}
 
 	/**
@@ -119,7 +116,8 @@ public class ReadFileTester {
 	 */
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		ReadFile f = new ReadFile();
+		f.toString();
 	}
 
 }

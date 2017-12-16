@@ -120,7 +120,7 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented");
+		new Mensagem().equals(Mensagem.class);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class MensagemTester {
 	 */
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		new Mensagem().toString();
 	}
 
 }

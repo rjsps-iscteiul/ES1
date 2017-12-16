@@ -54,8 +54,7 @@ public class SearchFileTester {
 	 */
 	@Test
 	public void testSearchFile() {
-		SearchFile sf = new SearchFile();
-		
+		SearchFile sf = new SearchFile();	
 	}
 
 	/**
@@ -64,7 +63,7 @@ public class SearchFileTester {
 	@Test
 	public void testGetLink() {
 		SearchFile sf = new SearchFile();
-		JTextField jtf= sf.getLink();
+		sf.getLink();
 	}
 
 }

@@ -159,18 +159,18 @@ public class FalsosGUI extends JFrame{
 	}
 
 	/**
-	 * Method that saves de results
+	 * Method that saves the results
 	 */
-	protected void guardarResultados() {
+	public void guardarResultados() {
 
 		double[] pesos = new double[rules.size()];
 		for(int i = 0 ; i<rules.size() ; i++) {
-			if(tabela.getValueAt(i, 1)!=null)
+			if(tabela.getValueAt(i, 1)!=null) {
 				if((double) tabela.getValueAt(i, 1) < 5  || (double) tabela.getValueAt(i, 1) > -5)
 					pesos[i]=(double) tabela.getValueAt(i, 1);	
-
 				else 
 					pesos[i]=0;	
+			}
 		}
 		ReadFile.guardarConfig(rules , pesos);	
 	}
@@ -178,7 +178,7 @@ public class FalsosGUI extends JFrame{
 	/**
 	 * Method that does the manual evaluation
 	 */
-	protected void avaliarManual() {
+	public void avaliarManual() {
 		double[] pesos = new double[rules.size()];
 		double[] falsosPositivosNegativos = new double[2];
 		boolean dadosinvalidos = false;

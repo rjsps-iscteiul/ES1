@@ -79,7 +79,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testFalsosGUIStringStringStringString() {
-		fail("Not yet implemented");
+		FalsosGUI f = new FalsosGUI("", "", "", "");
 	}
 
 	/**
@@ -95,7 +95,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testGuardarResultados() {
-		FalsosGUI fg= new FalsosGUI();
+		FalsosGUI fg= new FalsosGUI("", "Files/rules.cf", "", "");
+		fg.guardarResultados();
 		
 	}
 
@@ -104,7 +105,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testAvaliarManual() {
-		fail("Not yet implemented");
+		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		fg.avaliarManual();
 	}
 
 	/**
@@ -147,37 +149,36 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testTransformIntoHashMap() {
-		FalsosGUI fg = new FalsosGUI("", "Files/spam.log", "", "");
+		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
 		ReadFile r = new ReadFile();
-		double[] pesos = r.pesosReader(2.0, 10);
-		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
-		
+		double[] pesos = r.pesosReader(0, 10);
+		fg.transformIntoHashMap(pesos);
 	}
 
-	/**
-	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#evaluate(java.util.HashMap)}.
-	 */
-	@Test
-	public void testEvaluate() {
-		FalsosGUI fg= new FalsosGUI();
-		ReadFile r = new ReadFile();
-		double[] pesos= r.pesosReader(2.0, 10);
-		HashMap<String, Double> hm=fg.transformIntoHashMap(pesos);
-		double[] cenas= fg.evaluate(hm);
-	}
+//	/**
+//	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#evaluate(java.util.HashMap)}.
+//	 */
+//	@Test
+//	public void testEvaluate() {
+//		FalsosGUI fg= new FalsosGUI("", "", "Files/ham.log", "Files/spam.log");
+//		ReadFile r = new ReadFile();
+//		Mensagem msg = new Mensagem();
+//		double[] pesos= r.pesosReader(2.0, 10);
+//		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
+//		fg.getPesoFinalMensagem(hm, msg);
+//	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#getPesoFinalMensagem(java.util.HashMap, pt.iscte.es1.project.resources.msg.Mensagem)}.
 	 */
 	@Test
 	public void testGetPesoFinalMensagem() {
-		FalsosAuto fa = new FalsosAuto("", "Files/spam.log", "", "");
+		FalsosAuto fa = new FalsosAuto("", "Files/rules.cf", "", "");
 		Mensagem msg = new Mensagem();
-		msg.setRules(new ArrayList<String>());
 		ReadFile r = new ReadFile();
-		HashMap<String, Double> hmp = fa.transformIntoHashMap(r.pesosReader(2.0, 50));
+//		fa.setRules_path("Files/rules.cf");
+		HashMap<String, Double> hmp = fa.transformIntoHashMap(r.pesosReader(2.0, 10));
 		fa.getPesoFinalMensagem(hmp, msg);
-		
 	}
 
 	/**
@@ -185,7 +186,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testAvaliarAutomatico() {
-		FalsosGUI fg= new FalsosGUI();
+		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
 		fg.avaliarAutomatico();
 	}
 

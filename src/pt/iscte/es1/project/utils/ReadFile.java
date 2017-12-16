@@ -122,7 +122,6 @@ public class ReadFile {
 		double[] pesos = new double[numRegras];
 		
 		File file = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
-		
 	    try {
 	        Scanner sc = new Scanner(file);
 	        int i = 0;
@@ -135,7 +134,6 @@ public class ReadFile {
 //	        			System.out.println("LEITURA  DE PESOS " + pesos[j]);
 	        		}
 	        	}
-	        	
 	        	i++;
 	        }
 	        sc.close();
@@ -162,8 +160,6 @@ public class ReadFile {
 		} catch (IOException e) {
 			System.out.println("Erro a guardar ficheiro de configurações!");		
 		}
-		
-		
 		
 	}
 	
