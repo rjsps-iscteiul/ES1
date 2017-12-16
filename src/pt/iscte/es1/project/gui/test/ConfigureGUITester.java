@@ -5,6 +5,7 @@ package pt.iscte.es1.project.gui.test;
 
 import static org.junit.Assert.*;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import org.junit.After;
@@ -55,7 +56,8 @@ public class ConfigureGUITester {
 	@Test
 	public void testBuildGUI() {
 		ConfigureGUI gui = new ConfigureGUI("");
-		
+		gui.getButtonAuto().doClick();
+		gui.getButtonManual().doClick();
 	}
 
 	/**

@@ -61,6 +61,7 @@ public class GUITester {
 	@Test
 	public void testBuildGUI() {
 		GUI g = new GUI("");
+		g.getButtonInit().doClick();
 	}
 
 	/**

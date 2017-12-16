@@ -120,8 +120,8 @@ public class ReadFile {
 	public static double[] pesosReader(double nlinha, int numRegras){
 		
 		double[] pesos = new double[numRegras];
-		
 		File file = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
+		
 	    try {
 	        Scanner sc = new Scanner(file);
 	        int i = 0;
@@ -151,7 +151,7 @@ public class ReadFile {
 		File file = new File("AntiSpamConfigurationForProfessionalMailbox/rules.cf");
 		BufferedWriter save = new BufferedWriter(new FileWriter(file));
 		
-		for(int i = 0; i<rules.size(); i++){
+		for(int i = 0; i < rules.size(); i++){
 				save.write(rules.get(i) +  "	" + Double.toString(pesos[i]));
 				save.newLine();
 		}

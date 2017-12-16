@@ -158,6 +158,14 @@ public class FalsosGUI extends JFrame{
 
 	}
 
+//	public JButton getButtonAvaliar() {
+//		return avaliar;
+//	}
+//	
+//	public JButton getButtonGuardar() {
+//		return guardar;
+//	}
+	
 	/**
 	 * Method that saves the results
 	 */

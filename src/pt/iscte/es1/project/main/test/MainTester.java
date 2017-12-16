@@ -52,7 +52,9 @@ public class MainTester {
 	 */
 	@Test
 	public void testMain() {
-		//Main main = new Main();
+		Main m = new Main();
+		String[] args = new String[]{" "};
+		m.main(args);
 	}
 
 	/**
@@ -60,7 +62,8 @@ public class MainTester {
 	 */
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented");
+		Main m = new Main();
+		m.equals(Main.class);
 	}
 
 	/**
@@ -68,7 +71,8 @@ public class MainTester {
 	 */
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		Main m = new Main();
+		m.toString();
 	}
 
 }

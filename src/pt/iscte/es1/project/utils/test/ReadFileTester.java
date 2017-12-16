@@ -88,7 +88,7 @@ public class ReadFileTester {
 	 */
 	@Test
 	public void testPesosReader() {
-		ReadFile.pesosReader(10, 10);	
+		ReadFile.pesosReader(10, 10);
 	}
 
 	/**
@@ -97,9 +97,9 @@ public class ReadFileTester {
 	@Test
 	public void testGuardarConfig() {
 //		ReadFile r = new ReadFile();
-		ArrayList<String> rules = ReadFile.rulesReader("Files/rules.cf");
+//		ArrayList<String> rules = ReadFile.rulesReader("Files/rules.cf");	
 		double[] pesos = ReadFile.pesosReader(10, 10);
-		ReadFile.guardarConfig(rules, pesos);
+		ReadFile.guardarConfig(new ArrayList<String>(), pesos);
 	}
 
 	/**

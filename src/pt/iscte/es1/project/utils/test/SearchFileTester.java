@@ -55,6 +55,7 @@ public class SearchFileTester {
 	@Test
 	public void testSearchFile() {
 		SearchFile sf = new SearchFile();	
+		sf.getButton().doClick();
 	}
 
 	/**
@@ -65,5 +66,5 @@ public class SearchFileTester {
 		SearchFile sf = new SearchFile();
 		sf.getLink();
 	}
-
+	
 }

@@ -5,6 +5,7 @@ package pt.iscte.es1.project.gui.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.After;
@@ -148,7 +149,10 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testTransformIntoHashMap() {
-		fail("Not yet implemented");
+		FalsosManual fg = new FalsosManual("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		ReadFile r = new ReadFile();
+		double[] pesos = r.pesosReader(10, 10);
+		fg.transformIntoHashMap(pesos);
 	}
 
 	/**
@@ -158,11 +162,11 @@ public class FalsosManualTester {
 	public void testEvaluate() {
 		FalsosManual fi = new FalsosManual("", "", "Files/ham.log", "Files/spam.log");
 		ReadFile r = new ReadFile();
-		Mensagem msg = new Mensagem();
+//		Mensagem msg = new Mensagem();
 		fi.setRules_path("Files/rules.cf");
-		double[] pesos= r.pesosReader(2.0, 10);
+		double[] pesos= r.pesosReader(10, 10);
 		HashMap<String, Double> hm = fi.transformIntoHashMap(pesos);
-		fi.evaluate(hm);
+//		fi.evaluate(hm);
 	}
 
 	/**
@@ -172,8 +176,11 @@ public class FalsosManualTester {
 	public void testGetPesoFinalMensagem() {
 		FalsosManual fi = new FalsosManual("", "Files/rules.cf", "", "");
 		Mensagem msg = new Mensagem();
+		msg.setRules(new ArrayList<String>());
 		ReadFile r = new ReadFile();
-		fi.getPesoFinalMensagem(fi.transformIntoHashMap(r.pesosReader(2.0, 10)), new Mensagem());
+		double[] pesos = r.pesosReader(10, 10);
+		HashMap<String, Double> map = fi.transformIntoHashMap(pesos);
+		fi.getPesoFinalMensagem(map, msg);
 	}
 
 	/**

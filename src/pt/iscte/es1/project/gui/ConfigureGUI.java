@@ -24,6 +24,8 @@ import pt.iscte.es1.project.utils.SearchFile;
 public class ConfigureGUI extends GUI{
 
 	private static final long serialVersionUID = -9149707610120461378L;
+	private JButton auto;
+	private JButton manual;
 	
 	/**
 	 * Constructor
@@ -49,8 +51,8 @@ public class ConfigureGUI extends GUI{
 		JPanel buttons = new JPanel(new GridLayout(0,1)); 
 		buttons.setBorder(new EmptyBorder(10,0,10,0));
 		
-		JButton auto = new JButton("<html> Configuração Automática </html>");
-		JButton manual = new JButton("<html> Configuração Manual </html>");
+		auto = new JButton("<html> Configuração Automática </html>");
+		manual = new JButton("<html> Configuração Manual </html>");
 		
 		buttons.add(auto);
 		buttons.add(manual);
@@ -95,6 +97,14 @@ public class ConfigureGUI extends GUI{
 			}
 		});
 
+	}
+	
+	public JButton getButtonAuto() {
+		return auto;
+	}
+	
+	public JButton getButtonManual() {
+		return manual;
 	}
 	
 }

@@ -22,19 +22,20 @@ import javax.swing.border.*;
 public class GUI extends JFrame{
 
 	private static final long serialVersionUID = -2354561480505194562L;
+	private JButton  init;
 	
-/**
- * Constructor
- * @param s
- */
+	/**
+	 * Constructor
+	 * @param s
+	 */
 	public GUI (String s) {
 		setTitle(s);
 		buildGUI();
 	}
 	
-/**
- * Method that creates the window look
- */
+	/**
+	 * Method that creates the window look
+	 */
 	protected void buildGUI() {
 		setSize(600, 180);
 		setResizable(false);
@@ -47,7 +48,7 @@ public class GUI extends JFrame{
 		
 		JPanel south = new JPanel(new GridLayout(0,1)); 
 		south.setBorder(new EmptyBorder(0,80,20,80));		
-		JButton init = new JButton("Iniciar");
+		init = new JButton("Iniciar");
 		init.addActionListener(new ActionListener() {
 			
 			@Override
@@ -65,6 +66,10 @@ public class GUI extends JFrame{
 		add(gui);
 	}
 
+	public JButton getButtonInit() {
+		return init;
+	}
+	
 	public void open() {
 		setVisible(true);
 		setLocationRelativeTo(null);

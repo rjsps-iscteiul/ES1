@@ -58,6 +58,10 @@ public class SearchFile extends JPanel{
         add(button, BorderLayout.EAST);
     }
 
+    public JButton getButton() {
+    	return button;
+    }
+    
 	public JTextField getLink() {
 		return link;
 	}
