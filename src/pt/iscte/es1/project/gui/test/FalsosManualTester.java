@@ -62,7 +62,7 @@ public class FalsosManualTester {
 		String ham_path= "Files/ham.log";
 		String spam_path= "Files/spam.log";
 		String rules_path= "Files/rules.cf";
-//		FalsosManual falsosManual= new FalsosManual(title,rules_path,ham_path,spam_path);
+//		FalsosManual fi= new FalsosManual(title,rules_path,ham_path,spam_path);
 		
 	}
 
@@ -71,7 +71,7 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testFalsosGUI() {
-		FalsosGUI falsosGui = new FalsosGUI("","","","");
+		FalsosManual fi = new FalsosManual("","","","");
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testFalsosGUIStringStringStringString() {
-		FalsosGUI falsosGui= new FalsosGUI("","","","");
+		FalsosManual fi= new FalsosManual("","","","");
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testBuildGUI() {
-		FalsosGUI falsosGui= new FalsosGUI("","","","");
+		FalsosManual fi= new FalsosManual("","","","");
 	}
 
 	/**
@@ -95,7 +95,8 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testGuardarResultados() {
-		fail("Not yet implemented");
+		FalsosAuto fi= new FalsosAuto("", "Files/rules.cf", "", "");
+		fi.guardarResultados();
 	}
 
 	/**
@@ -103,7 +104,8 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testAvaliarManual() {
-		fail("Not yet implemented");
+		FalsosAuto fi = new FalsosAuto("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		fi.avaliarManual();
 	}
 
 	/**
@@ -111,8 +113,8 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testOpen() {
-		FalsosGUI falsosGui= new FalsosGUI("","","","");
-		falsosGui.open();
+		FalsosManual fi= new FalsosManual("","","","");
+		fi.open();
 	}
 
 	/**
@@ -120,7 +122,7 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testSetRules_path() {
-		FalsosGUI fi= new FalsosGUI("","","","");
+		FalsosManual fi= new FalsosManual("","","","");
 		fi.setRules_path("Files/rules.cf");
 	}
 
@@ -129,8 +131,8 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testBuildTable() {
-		FalsosGUI falsosGui= new FalsosGUI("","","","");
-		falsosGui.buildTable();
+		FalsosManual fi= new FalsosManual("","","","");
+		fi.buildTable();
 	}
 
 	/**
@@ -138,8 +140,7 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testMain() {
-//		FalsosGUI falsosGui= new FalsosGUI("","","","");
-//		falsosGui.main(new String[]);
+
 	}
 
 	/**
@@ -155,32 +156,34 @@ public class FalsosManualTester {
 	 */
 	@Test
 	public void testEvaluate() {
-		FalsosGUI fg= new FalsosGUI("", "", "Files/ham.log", "Files/spam.log");
+		FalsosManual fi = new FalsosManual("", "", "Files/ham.log", "Files/spam.log");
 		ReadFile r = new ReadFile();
 		Mensagem msg = new Mensagem();
-		fg.setRules_path("Files/rules.cf");
+		fi.setRules_path("Files/rules.cf");
 		double[] pesos= r.pesosReader(2.0, 10);
-		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
-		fg.evaluate(hm);
+		HashMap<String, Double> hm = fi.transformIntoHashMap(pesos);
+		fi.evaluate(hm);
 	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#getPesoFinalMensagem(java.util.HashMap, pt.iscte.es1.project.resources.msg.Mensagem)}.
 	 */
-//	@Test
-//	public void testGetPesoFinalMensagem() {
-//		FalsosGUI fi = new FalsosGUI("","","","");
-//		ReadFile r = new ReadFile();
-//		fi.getPesoFinalMensagem(fi.transformIntoHashMap(r.pesosReader(2.0, 10)), new Mensagem());
-//	}
-//
-//	/**
-//	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#avaliarAutomatico()}.
-//	 */
-//	@Test
-//	public void testAvaliarAutomatico() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testGetPesoFinalMensagem() {
+		FalsosManual fi = new FalsosManual("", "Files/rules.cf", "", "");
+		Mensagem msg = new Mensagem();
+		ReadFile r = new ReadFile();
+		fi.getPesoFinalMensagem(fi.transformIntoHashMap(r.pesosReader(2.0, 10)), new Mensagem());
+	}
+
+	/**
+	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#avaliarAutomatico()}.
+	 */
+	@Test
+	public void testAvaliarAutomatico() {
+		FalsosManual fi = new FalsosManual("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		fi.avaliarAutomatico();
+	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#configureAlgorithmList(java.util.List)}.

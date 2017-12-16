@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import pt.iscte.es1.project.gui.GUI;
+
 /**
  * @author Beatriz
  *
@@ -50,7 +52,7 @@ public class GUITester {
 	 */
 	@Test
 	public void testGUI() {
-		fail("Not yet implemented");
+		GUI g = new GUI("");
 	}
 
 	/**
@@ -58,7 +60,7 @@ public class GUITester {
 	 */
 	@Test
 	public void testBuildGUI() {
-		fail("Not yet implemented");
+		GUI g = new GUI("");
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class GUITester {
 	 */
 	@Test
 	public void testOpen() {
-		fail("Not yet implemented");
+		new GUI("").open();
 	}
 
 	/**
@@ -74,7 +76,8 @@ public class GUITester {
 	 */
 	@Test
 	public void testEquals() {
-		fail("Not yet implemented");
+		GUI g = new GUI("");
+		g.equals(GUI.class);
 	}
 
 }

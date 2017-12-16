@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import pt.iscte.es1.project.gui.FalsosAuto;
 import pt.iscte.es1.project.gui.FalsosGUI;
+import pt.iscte.es1.project.gui.FalsosManual;
 import pt.iscte.es1.project.resources.msg.Mensagem;
 import pt.iscte.es1.project.utils.ReadFile;
 
@@ -71,7 +72,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testFalsosGUI() {
-		
+		FalsosAuto fg = new FalsosAuto("", "", "", "");
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testFalsosGUIStringStringStringString() {
-		FalsosGUI f = new FalsosGUI("", "", "", "");
+		FalsosAuto fg = new FalsosAuto("", "", "", "");
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testBuildGUI() {
-		FalsosAuto fa = new FalsosAuto("", "", "", "");
+		FalsosAuto fg = new FalsosAuto("", "", "", "");
 	}
 
 	/**
@@ -95,9 +96,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testGuardarResultados() {
-		FalsosGUI fg= new FalsosGUI("", "Files/rules.cf", "", "");
+		FalsosAuto fg= new FalsosAuto("", "Files/rules.cf", "", "");
 		fg.guardarResultados();
-		
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testAvaliarManual() {
-		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		FalsosAuto fg = new FalsosAuto("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
 		fg.avaliarManual();
 	}
 
@@ -114,7 +114,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testOpen() {
-	
+		FalsosManual fg= new FalsosManual("","","","");
+		fg.open();
 	}
 
 	/**
@@ -122,9 +123,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testSetRules_path() {  //A funcao e chamada  no contrutor e fica logo testada
-//		FalsosGUI falsosGui= new FalsosGUI();
-//		String rules_path= "Files/rules.cf";
-//		falsosGui.setRules_path(rules_path);
+		FalsosAuto fg = new FalsosAuto("","","","");
+		fg.setRules_path("Files/rules.cf");
 	}
 
 	/**
@@ -132,8 +132,8 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testBuildTable() { //cena gráfica
-//		FalsosGUI fg= new FalsosGUI();
-//		fg.buildTable();
+		FalsosAuto fg= new FalsosAuto("", "", "", "");
+		fg.buildTable();
 	}
 
 	/**
@@ -149,24 +149,25 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testTransformIntoHashMap() {
-		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		FalsosAuto fg = new FalsosAuto("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
 		ReadFile r = new ReadFile();
 		double[] pesos = r.pesosReader(0, 10);
 		fg.transformIntoHashMap(pesos);
 	}
 
-//	/**
-//	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#evaluate(java.util.HashMap)}.
-//	 */
-//	@Test
-//	public void testEvaluate() {
-//		FalsosGUI fg= new FalsosGUI("", "", "Files/ham.log", "Files/spam.log");
-//		ReadFile r = new ReadFile();
-//		Mensagem msg = new Mensagem();
-//		double[] pesos= r.pesosReader(2.0, 10);
-//		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
-//		fg.getPesoFinalMensagem(hm, msg);
-//	}
+	/**
+	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#evaluate(java.util.HashMap)}.
+	 */
+	@Test
+	public void testEvaluate() {
+		FalsosAuto fg = new FalsosAuto("", "", "Files/ham.log", "Files/spam.log");
+		ReadFile r = new ReadFile();
+		Mensagem msg = new Mensagem();
+		fg.setRules_path("Files/rules.cf");
+		double[] pesos= r.pesosReader(2.0, 10);
+		HashMap<String, Double> hm = fg.transformIntoHashMap(pesos);
+		fg.evaluate(hm);
+	}
 
 	/**
 	 * Test method for {@link pt.iscte.es1.project.gui.FalsosGUI#getPesoFinalMensagem(java.util.HashMap, pt.iscte.es1.project.resources.msg.Mensagem)}.
@@ -186,7 +187,7 @@ public class FalsosAutoTester {
 	 */
 	@Test
 	public void testAvaliarAutomatico() {
-		FalsosGUI fg = new FalsosGUI("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
+		FalsosAuto fg = new FalsosAuto("", "Files/rules.cf", "Files/ham.log", "Files/spam.log");
 		fg.avaliarAutomatico();
 	}
 
