@@ -378,8 +378,8 @@ public class FalsosGUI extends JFrame{
 	 * @return algorithms
 	 */
 	private void updateFalsosGui(double[] falsosPositivosNegativos) {
-		fake_pos.setText(String.valueOf(falsosPositivosNegativos[0]));
-		fake_neg.setText(String.valueOf(falsosPositivosNegativos[1]));
+		fake_pos.setText(String.valueOf(Math.round(falsosPositivosNegativos[0])));
+		fake_neg.setText(String.valueOf(Math.round(falsosPositivosNegativos[1])));
 	}
 
 	/**

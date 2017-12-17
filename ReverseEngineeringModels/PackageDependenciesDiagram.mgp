@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="antiSpamFilter" x="451" y="267">
+        <DependencyLink destination="pt.iscte.es1.project.gui">
+            <Point x="525" y="214"/>
+        </DependencyLink>
+    </Package>
+    <Package name="pt.iscte.es1.project.gui" x="391" y="125">
+        <DependencyLink destination="pt.iscte.es1.project.utils"/>
+        <DependencyLink destination="antiSpamFilter">
+            <Point x="438" y="220"/>
+        </DependencyLink>
+        <DependencyLink destination="pt.iscte.es1.project.resources.msg"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.main" x="386" y="27">
+        <DependencyLink destination="pt.iscte.es1.project.gui"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.resources.msg" x="17" y="125"/>
+    <Package name="pt.iscte.es1.project.utils" x="256" y="186">
+        <DependencyLink destination="pt.iscte.es1.project.resources.msg"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.utils.test" x="5" y="376">
+        <DependencyLink destination="pt.iscte.es1.project.utils"/>
+        <DependencyLink destination="pt.iscte.es1.project.resources.msg"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.resources.msg.test" x="195" y="377">
+        <DependencyLink destination="pt.iscte.es1.project.utils"/>
+        <DependencyLink destination="pt.iscte.es1.project.resources.msg"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.main.test" x="102" y="28">
+        <DependencyLink destination="pt.iscte.es1.project.main"/>
+    </Package>
+    <Package name="pt.iscte.es1.project.gui.test" x="442" y="378">
+        <DependencyLink destination="pt.iscte.es1.project.utils"/>
+        <DependencyLink destination="pt.iscte.es1.project.gui">
+            <Point x="649" y="250"/>
+        </DependencyLink>
+        <DependencyLink destination="pt.iscte.es1.project.resources.msg"/>
+    </Package>
+</PackageAnalysis>

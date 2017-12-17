@@ -1,1 +1,1 @@
-
+Testes unitários estão localizados na pasta src, separados por package a que estão associados. Para o package "exemplo", os testes unitários estão localizados no package "exemplo.test".
