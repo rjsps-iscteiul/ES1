@@ -47,6 +47,13 @@ public class ReadFile {
 		
 	}
 	
+	/**
+	 * 
+	 * Static method that returns an ArrayList of messages when given the path for the log files 
+	 * 
+	 * @param path is the path to the file 
+	 * @return ArrayList of messages
+	 */
 	public static ArrayList<Mensagem> messageReader(String path){
 		
 		File file = new File(path);
@@ -76,6 +83,12 @@ public class ReadFile {
 		return messages;
 	}
 	
+	/**
+	 * 
+	 * Method that returns the number of false positives and false negatives of the results 
+	 * 
+	 * @return is a double[] with the number of FN, FP and the line corresponding to them in the results file generated
+	 */
 	public static double[] fpfnReader(){
 		
 		double[] resultadoFinal = new double[3];
@@ -117,6 +130,14 @@ public class ReadFile {
 		return resultadoFinal; 
 	}
 	
+	/**
+	 * 
+	 * Read the weights returned by the JMetal algorithm 
+	 * 
+	 * @param nlinha
+	 * @param numRegras
+	 * @return is a double[] with the weights 
+	 */
 	public static double[] pesosReader(double nlinha, int numRegras){
 		
 		double[] pesos = new double[numRegras];
@@ -145,6 +166,13 @@ public class ReadFile {
 		return pesos;
 	}
 	
+	/**
+	 * 
+	 * Method invoked when the button to save configuration is pressed
+	 * 
+	 * @param rules is the ArrayList of rules
+	 * @param pesos is the weights associated to the rules
+	 */
 	public static void guardarConfig(ArrayList<String> rules, double[] pesos){
 		
 		try {
@@ -162,13 +190,5 @@ public class ReadFile {
 		}
 		
 	}
-	
-	
-//	public static void main(String[] args) {
-//		ReadFile r = new ReadFile();
-//		ArrayList<Mensagem> msgs = r.messageReader("C:/Users/Beatriz/Desktop/Nova pasta/spam.log");
-//		System.out.println("Mensagem: " + msgs.get(0).getId());
-//		System.out.println("Regras: " + msgs.get(0).getRules());	
-//	}
 	
 }
