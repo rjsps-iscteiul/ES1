@@ -1,0 +1,82 @@
+********************** Sprint retrospective ********************** 
+
+-> Sprint 1  (4/11 a 18/11) - 2 Semanas
+
+No sprint 1 foram planeadas as seguintes tarefas:
+
+	Criação da Interface Gráfica:
+		Mockups feitas no drawIO;
+		Painel de introdução da aplicação com botão para iniciar;
+		Painel para definir os caminhos dos ficheiros ham, spam e rules;
+		Criar classe para ir buscar ficheiro ao explorados Windows;
+		Painel para afinação de filtros manualmente;
+		Painel para geração de resultados automaticamente.
+	Planeamento da estrutura de dados:
+		Definir estruturas de armazenamento de informação;
+		Definir organização de dados.
+	Atualização do ficheiro Readme.md;
+	Leitura do ficheiro rules.cf:
+		Criar classe que lê ficheiros;
+		Obter directório do ficheiro rules.cf a partir da caixa de seleção do ecrã anterior;
+		Leitura do ficheiro rules.cf para a estrutura de dados;
+		Mostrar regras na interface.
+	JavaDoc das Classes da Interface gráfica;
+	JavaDoc leitura de ficheiro rules.cf;
+	JUnit leitura de ficheiro rules.cf;
+		Cobertura a 100%
+
+A única tarefa que ficou por concluir foi a o JUnit da leitura do ficheiro rules.cf. 
+Todas as outras foram concluídas com sucesso e no tempo estipulado. 
+As tarefas foram bem divididas e a sua priorização foi bem calculada. 
+No entanto, tivemos algumas dificuldades em respeitar os tempos previstos para algumas das tarefas. 
+No próximo sprint iremos ter em conta este problema de forma a tentar melhorar a previsão do tempo que demorará na realização de cada tarefa.  
+
+
+-> Sprint 2 (18/11 a 16/12) - 4 Semanas
+
+No sprint 2 foram planeadas as seguintes tarefas:
+
+	Gerar gráficos em R:
+		Compilação do ficheiro R gerado;
+		exportar PDF com gráficos.
+	Cálculo  dos Falsos Positivos:
+		Cálculo efectuado a partir do botão “Avaliar”;
+		Apresentar resultados na JTextField respectiva.
+	Cálculo  dos Falsos Positivos:
+		Cálculo efectuado a partir do botão “Avaliar”;
+		Apresentar resultados na JTextField respectiva.
+	Leitura do ficheiro spam.log:
+		Criar estrutura de dados para armazenar mensagem
+		Ler ficheiro de um diretório
+		Carregar ficheiro para uma estrutura de dados em memória 
+	Leitura do ficheiro ham.log:
+		Criar estrutura de dados para armazenar mensagem
+		Ler ficheiro de um diretório
+		Carregar ficheiro para uma estrutura de dados em memória 
+	JavaDoc Cálculo Automático
+	JavaDoc Cálculo Manual
+	JUnit Cálculo Automático
+		Realizar casos de teste
+		Confirmar cobertura de código 
+	JUnit Cálculo Manual
+		Realizar casos de teste
+		Confirmar cobertura de código 
+	CodeInspection
+	Extrair jar
+	Video de demonstração do trabalho realizado
+
+Consideramos que ficou tudo a funcionar como planeámos.
+Todas estas tarefas foram concluídas com sucesso e no tempo previsto. 
+Tivemos alguns problemas nos JUnits porque não conseguimos uma cobertura do sistema de 100% no entanto, foi conseguida uma cobertura de 88,4% que já consideramos bastante aceitavel.
+
+
+
+
+
+
+
+
+
+
+
+
