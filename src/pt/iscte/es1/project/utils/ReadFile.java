@@ -176,6 +176,10 @@ public class ReadFile {
 	public static void guardarConfig(ArrayList<String> rules, double[] pesos){
 		
 		try {
+		
+		File dir = new File("AntiSpamConfigurationForProfessionalMailbox");
+		dir.mkdir();	
+			
 		File file = new File("AntiSpamConfigurationForProfessionalMailbox/rules.cf");
 		BufferedWriter save = new BufferedWriter(new FileWriter(file));
 		
