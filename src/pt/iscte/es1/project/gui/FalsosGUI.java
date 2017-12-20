@@ -174,8 +174,8 @@ public class FalsosGUI extends JFrame{
 		double[] pesos = new double[rules.size()];
 		for(int i = 0 ; i<rules.size() ; i++) {
 			if(tabela.getValueAt(i, 1)!=null) {
-				if((double) tabela.getValueAt(i, 1) <= 5  || (double) tabela.getValueAt(i, 1) >= -5)
-					pesos[i]=(double) tabela.getValueAt(i, 1);	
+				if(Double.parseDouble(tabela.getValueAt(i, 1).toString()) <= 5  || Double.parseDouble(tabela.getValueAt(i, 1).toString()) >= -5)
+					pesos[i]= Double.parseDouble(tabela.getValueAt(i, 1).toString());	
 				else 
 					pesos[i]=0;	
 			}
@@ -284,7 +284,7 @@ public class FalsosGUI extends JFrame{
 		double falsosNegativos = 0;
 		for(Mensagem spam : spamList) {
 			double pesoFinalMensagem = getPesoFinalMensagem(regrasComPesos, spam);
-			if(pesoFinalMensagem < 5) {
+			if(pesoFinalMensagem <= 5) {
 				falsosNegativos++;
 			}
 		}
