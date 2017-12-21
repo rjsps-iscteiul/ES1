@@ -4,11 +4,13 @@ IdentificaÃ§Ã£o do grupo: Grupo 103
 
 Identificao dos elementos do grupo: 
 	
-	Rui Passinhas, nº 68675
-	Beatriz Arriaga, nº 60250
-	Susana Oliveira, nº 60185
-	Ruben Silva, nº 69308
+	Rui Passinhas, nï¿½ 68675
+	Beatriz Arriaga, nï¿½ 60250
+	Susana Oliveira, nï¿½ 60185
+	Ruben Silva, nï¿½ 69308
 
 Identificacao do projeto desenvolvida: AntiSpamConfigurationForProfessionalMailbox
 
 Link para o video no youtube com a demonstracaoo da aplicacao final desenvolvida: 
+
+	https://www.youtube.com/watch?v=MKTCBwWYHP4&feature=youtu.be
